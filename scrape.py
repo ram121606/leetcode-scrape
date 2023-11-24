@@ -5,7 +5,7 @@ from fastapi import HTTPException,status
 def scrape(url:str):
     data = requests.get(url)
     if(data.status_code != 200):
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail='Something gone wrong!!')
+        return HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail='Something gone wrong!!')
     else:
         soup = BeautifulSoup(data.text , 'lxml')
         # print(soup.find('h1').text)
