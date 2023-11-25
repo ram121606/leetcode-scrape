@@ -5,8 +5,10 @@ from fastapi import HTTPException,status
 def scrape(url:str):
     data = requests.get(url)
     if(data.status_code != 200):
+        print("Error")
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail='Something gone wrong!!')
     else:
+        print("Success")
         soup = BeautifulSoup(data.text , 'lxml')
         # print(soup.find('h1').text)
         name = soup.find('div',class_='text-label-1 dark:text-dark-label-1 break-all text-base font-semibold').text
