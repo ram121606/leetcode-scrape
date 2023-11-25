@@ -5,7 +5,7 @@ from fastapi import HTTPException,status
 def scrape(url:str):
     data = requests.get(url)
     if(data.status_code != 200):
-        return HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail='Something gone wrong!!')
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail='Something gone wrong!!')
     else:
         soup = BeautifulSoup(data.text , 'lxml')
         # print(soup.find('h1').text)
@@ -30,4 +30,4 @@ def scrape(url:str):
         medium = count[1].text
         hard = count[2].text
         tot = int(easy)+int(medium)+int(hard)
-        return {'username':name, 'rank':rank, 'languages used':languages, 'skills':skills, 'contest_rating':contest_rating, 'global_ranking':global_ranking, 'no_of_contests_attended':attended, 'easy_solved':easy, 'medium_solved':medium, 'hard_solved':hard, 'total_no_of_problems_solved':tot}
+        return {'username':name, 'rank':rank, 'languages_used':languages, 'skills':skills, 'contest_rating':contest_rating, 'global_ranking':global_ranking, 'no_of_contests_attended':attended, 'easy_solved':easy, 'medium_solved':medium, 'hard_solved':hard, 'total_no_of_problems_solved':tot}
