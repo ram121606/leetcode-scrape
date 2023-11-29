@@ -7,7 +7,7 @@ def scrape(url:str):
     if(data.status_code != 200):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail='Something gone wrong!!')
     else:
-        soup = BeautifulSoup(data.text , 'lxml')
+        soup = BeautifulSoup(data.text , 'html')
         # print(soup.find('h1').text)
         name = soup.find('div',class_='text-label-1 dark:text-dark-label-1 break-all text-base font-semibold').text
         rank = soup.find('span',class_='ttext-label-1 dark:text-dark-label-1 font-medium').text
